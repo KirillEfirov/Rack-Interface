@@ -21,10 +21,16 @@ To run this application, you can use any server that supports Rack. For example,
 ```
 require "./hello_world_app"
 
+use Rack::Auth::Basic do |username, password|
+  username == 'admin' && password == 'secret'
+end
+
 run HelloWorldApp.new
 ```
 
 Here config.ru - this is a configuration file that defines how to launch a Rack application. The run method is used to launch a Rack application that accepts the application object created above.
+
+Middleware Rack::Auth::Basic requests a login and password to access the application. In this example, `login and password are 'admin' and 'secret'` respectively.
 
 Then you can start the Rack server using the backup command in the `console`, for example:
 
